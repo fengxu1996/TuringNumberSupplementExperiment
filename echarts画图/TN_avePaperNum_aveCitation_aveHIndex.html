@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>distribution of Turing Number</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts-Plug-in/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                //text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['average PaperNum', 'average Citation', 'average h-Index'],
+                orient: 'vertical',
+                right: "10%",
+                top: "10%",
+                fontWeight: 'bold'
+            },
+            xAxis: {
+                data: ["0","1","2","3","4","5","6","7"],
+                name: "Turing Number",
+                nameLocation: 'middle',
+                nameGap: 25,
+                nameTextStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 18
+                }
+            },
+            yAxis: [
+                {
+                    position: 'left',
+                    name: "average paper number or h-Index",
+                    nameLocation: 'middle',
+                    min: 0,
+                    max: 100,
+                    nameGap: 30,
+                    nameTextStyle: {
+                        fontWeight: 'bold',
+                        fontSize: 18
+                    }
+                //,
+                // axisLabel:{
+                //     formatter: function (value) {
+                //         return value/1000 + 'k'
+                //         }
+                //     }
+                },
+                {
+
+                    position: 'right',
+                    name: "average citation",
+                    nameLocation: 'middle',
+                    min: 0,
+                    max: 15000,
+                    nameGap: 30,
+                    nameTextStyle: {
+                        fontWeight: 'bold',
+                        fontSize: 18
+                    },
+                    axisLabel:{
+                        formatter: function (value) {
+                            return value/1000 + 'k'
+                            }
+                        }
+                }
+            ],
+            series: [
+                {
+                    name: "average PaperNum",
+                    type: 'bar',
+                    data: [99.73611111111111, 61.94181326116374, 39.09905387140375,
+                        16.372873964238988, 4.37475887345679, 2.1682494684620837, 1.7272727272727273, 1.8418367346938775],
+                    barGap: "0%",
+                    yAxisIndex: 0
+                },
+                {
+                    name: 'average Citation',
+                    type: 'bar',
+                    data: [14580.236111111111, 3888.2638700947227, 1462.988221664414,
+                        335.2848342782381, 57.92028356481482, 23.122608079376327, 21.10330578512397, 23.607142857142858],
+                    barGap: "0%",
+                    yAxisIndex: 1
+                },
+                {
+                    name: 'average h-Index',
+                    type: 'bar',
+                    data: [33.013888888888886, 17.14343707713126, 11.04170689322263,
+                        5.282326646314871, 2.0204957561728394, 1.2077958894401133, 1.0057851239669422, 1.0357142857142858],
+                    barGap: "0%",
+                    yAxisIndex: 0
+                }
+            ],
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {
+                        show:true,
+                        excludeComponents :['toolbox'],
+                        pixelRatio: 2
+                    }
+                }
+            }
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

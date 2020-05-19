@@ -1,0 +1,249 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="lib/esl.js"></script>
+        <script src="lib/config.js"></script>
+        <script src="lib/jquery.min.js"></script>
+    </head>
+    <body>
+        <style>
+            html, body, #main {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+        <div id="main"></div>
+        <script>
+
+            require([
+                'echarts'
+                // 'echarts/chart/map',
+                // 'echarts/component/tooltip',
+                // 'echarts/component/legend',
+                // 'echarts/component/geo',
+                // 'echarts/component/visualMap'
+            ], function (echarts) {
+
+                $.get('../map/json/world.json', function (worldJson) {
+                    echarts.registerMap('world', worldJson);
+
+                    var chart = echarts.init(document.getElementById('main'), null, {
+
+                    });
+
+                    var itemStyle = {
+                        normal:{
+                            borderWidth: 0.5,
+                            borderColor: 'black'
+                        },
+                        emphasis:{
+                            label:{show:true}
+                            // shadowOffsetX: 0,
+                            // shadowOffsetY: 0,
+                            // shadowBlur: 20,
+                            // shadowColor: 'rgba(0, 0, 0, 0.3)'
+                        }
+                    };
+
+                    chart.setOption({
+                        title : {
+                            // text: 'World Population (2010)',
+                            // subtext: 'from United Nations, Total population, both sexes combined, as of 1 July (thousands)',
+                            // sublink : 'http://esa.un.org/wpp/Excel-Data/population.htm',
+                            // left: 'center',
+                            // top: 'top'
+                        },
+                        tooltip : {
+                            trigger: 'item',
+                            formatter : function (params) {
+                                var value = (params.value + '').split('.');
+                                value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,')
+                                        + '.' + value[1];
+                                return params.seriesName + '<br/>' + params.name + ' : ' + value;
+                            }
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                            saveAsImage: {
+                                show:true,
+                                excludeComponents :['toolbox'],
+                                pixelRatio: 2
+                                }
+                            }
+                        },
+                        visualMap: {
+                            min: 2,
+                            max: 7,
+                            // text:['High','Low'],
+                            realtime: true,
+                            calculable : true,
+                            color: ['orangered','yellow','lightskyblue'],
+                            // color: 'blue',
+                            // position: ['50%', '50%'],
+                            orient: 'horizontal',//'horizontal',
+                            // align: 'bottom'
+                            // right: "20%",
+                            left: 'center',
+                            bottom: '5%'
+                        },
+                        series : [
+                            {
+                                // name: 'World Population (2010)',
+                                type: 'map',
+                                map: 'world',
+                                roam: true,
+                                top: 60,
+                                width: '80%',
+                                itemStyle: itemStyle,
+                                data:[
+                                    {name: 'United States', value: 3.2385801917694},
+                                    {name: 'China', value: 3.893542757417103},
+                                    {name: 'Germany', value: 3.484457004440856},
+                                    {name: 'France', value: 3.5783238262395787},
+                                    {name: 'Canada', value: 3.4357142857142855},
+                                    {name: 'United Kingdom', value: 3.530430220356768},
+                                    {name: 'Japan', value: 3.981132075471698},
+                                    {name: 'Brazil', value: 3.8107714701601165},
+                                    {name: 'South Korea', value: 4.069182389937107},
+                                    {name: 'Italy', value: 3.577023498694517},
+                                    {name: 'Spain', value: 3.8602739726027395},
+                                    {name: 'India', value: 4.094619666048238},
+                                    {name: 'Taiwan', value: 4.061895551257253},
+                                    {name: 'Australia', value: 3.766509433962264},
+                                    {name: 'Israel', value: 2.870699881376038},
+                                    {name: 'Netherlands', value: 3.6996996996997},
+                                    {name: 'Singapore', value: 3.6350515463917525},
+                                    {name: 'Switzerland', value: 3.281720430107527},
+                                    {name: 'Poland', value: 4.017114914425428},
+                                    {name: 'Iran', value: 4.272251308900524},
+                                    {name: 'Sweden', value: 3.7506775067750677},
+                                    {name: 'Austria', value: 3.3961218836565097},
+                                    {name: 'Turkey', value: 4.214076246334311},
+                                    {name: 'Hong Kong', value: 3.5671641791044775},
+                                    {name: 'Portugal', value: 3.7223880597014927},
+                                    {name: 'Denmark', value: 3.3229813664596275},
+                                    {name: 'Greece', value: 3.7889273356401385},
+                                    {name: 'Belgium', value: 3.622950819672131},
+                                    {name: 'Norway', value: 3.4718614718614718},
+                                    {name: 'Czechia', value: 3.652173913043478},
+                                    {name: 'Finland', value: 3.918181818181818},
+                                    {name: 'Pakistan', value: 4.128571428571429},
+                                    {name: 'Hungary', value: 3.8514851485148514},
+                                    {name: 'Mexico', value: 4.350282485875706},
+                                    {name: 'Russia', value: 3.977272727272727},
+                                    {name: 'Ireland', value: 3.5067567567567566},
+                                    {name: 'New Zealand', value: 3.7183098591549295},
+                                    {name: 'Argentina', value: 3.648},
+                                    {name: 'Romania', value: 3.870967741935484},
+                                    {name: 'Malaysia', value: 4.520408163265306},
+                                    {name: 'Slovenia', value: 3.734042553191489},
+                                    {name: 'Chile', value: 4.091954022988506},
+                                    {name: 'Egypt', value: 4.464285714285714},
+                                    {name: 'Thailand', value: 4.32},
+                                    {name: 'United Arab Emirates', value: 4.028985507246377},
+                                    {name: 'Saudi Arabia', value: 4.130434782608695},
+                                    {name: 'Uruguay', value: 4.1940298507462686},
+                                    {name: 'Tunisia', value: 4.258064516129032},
+                                    {name: 'Jordan', value: 4.5423728813559325},
+                                    {name: 'Colombia', value: 4.087719298245614},
+                                    {name: 'Cyprus', value: 3.150943396226415},
+                                    {name: 'Indonesia', value: 4.679245283018868},
+                                    {name: 'Croatia', value: 4.291666666666667},
+                                    {name: 'Algeria', value: 4.409090909090909},
+                                    {name: 'Slovakia', value: 4.162790697674419},
+                                    {name: 'South Africa', value: 4.285714285714286},
+                                    {name: 'Serbia', value: 4.585365853658536},
+                                    {name: 'Bulgaria', value: 4.5675675675675675},
+                                    {name: 'Bangladesh', value: 4.617647058823529},
+                                    {name: 'Vietnam', value: 4.066666666666666},
+                                    {name: 'Morocco', value: 4.7},
+                                    {name: 'Luxembourg', value: 3.0},
+                                    {name: 'Estonia', value: 4.0},
+                                    {name: 'Sri Lanka', value: 4.095238095238095},
+                                    {name: 'Puerto Rico', value: 4.578947368421052},
+                                    {name: 'Iceland', value: 3.5294117647058822},
+                                    {name: 'Ukraine', value: 4.125},
+                                    {name: 'Qatar', value: 3.769230769230769},
+                                    {name: 'Lebanon', value: 3.6153846153846154},
+                                    {name: 'Costa Rica', value: 3.6363636363636362},
+                                    {name: 'Lithuania', value: 4.818181818181818},
+                                    {name: 'North Macedonia', value: 4.545454545454546},
+                                    {name: 'Kuwait', value: 4.3},
+                                    {name: 'Philippines', value: 4.7},
+                                    {name: 'Cuba', value: 4.111111111111111},
+                                    {name: '', value: 3.625},
+                                    {name: 'Kazakhstan', value: 5.25},
+                                    {name: 'Haiti', value: 3.0},
+                                    {name: 'Jamaica', value: 3.857142857142857},
+                                    {name: 'Venezuela', value: 3.7142857142857144},
+                                    {name: 'Belarus', value: 4.285714285714286},
+                                    {name: 'Guadeloupe', value: 4.0},
+                                    {name: 'Panama', value: 4.0},
+                                    {name: 'Ecuador', value: 4.285714285714286},
+                                    {name: 'Oman', value: 3.5},
+                                    {name: 'Malta', value: 3.0},
+                                    {name: 'French Polynesia', value: 4.2},
+                                    {name: 'Bahrain', value: 4.6},
+                                    {name: 'Iraq', value: 4.5},
+                                    {name: 'Albania', value: 4.25},
+                                    {name: 'Nigeria', value: 5.0},
+                                    {name: 'Fiji', value: 3.6666666666666665},
+                                    {name: 'Brunei', value: 3.3333333333333335},
+                                    {name: 'Senegal', value: 4.0},
+                                    {name: 'Ethiopia', value: 4.0},
+                                    {name: 'Trinidad and Tobago', value: 4.666666666666667},
+                                    {name: 'Georgia', value: 2.5},
+                                    {name: 'Moldova', value: 3.5},
+                                    {name: 'Djibouti', value: 3.5},
+                                    {name: 'Montenegro', value: 4.0},
+                                    {name: 'Curaçao', value: 3.0},
+                                    {name: 'Armenia', value: 3.0},
+                                    {name: 'Vatican City', value: 3.0},
+                                    {name: 'Honduras', value: 3.0},
+                                    {name: 'French Guiana', value: 3.0},
+                                    {name: 'Nepal', value: 3.0},
+                                    {name: 'Zimbabwe', value: 3.0},
+                                    {name: 'Bosnia and Herzegovina', value: 4.0},
+                                    {name: 'Kenya', value: 4.0},
+                                    {name: 'Latvia', value: 4.0},
+                                    {name: 'Ghana', value: 4.0},
+                                    {name: 'Guatemala', value: 4.0},
+                                    {name: 'Peru', value: 4.0},
+                                    {name: 'Bolivia', value: 4.0},
+                                    {name: 'Guam', value: 4.0},
+                                    {name: 'Sudan', value: 5.0},
+                                    {name: 'Cambodia', value: 5.0},
+                                    {name: 'Rwanda', value: 5.0},
+                                    {name: 'Tanzania', value: 6.0}
+
+                                ]
+                            }
+                        ]
+                    });
+                });
+            });
+
+        </script>
+    </body>
+</html>

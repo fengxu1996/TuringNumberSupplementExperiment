@@ -1,0 +1,9 @@
+TN-hIndex(pearsonr): correlation: -0.43953639086831237 pvalue: 0.0
+TN-paperNum(pearsonr): correlation: -0.3304022133803881 pvalue: 0.0
+TN-citationSum(pearsonr): correlation: -0.2578934598031636 pvalue: 0.0
+TN-hIndex(spearmanr): correlation: -0.49011076813192994 pvalue: 0.0
+TN-paperNum(spearmanr): correlation: -0.46306850034738517 pvalue: 0.0
+TN-citationSum(spearmanr): correlation: -0.49968748994782847 pvalue: 0.0
+TN-hIndex(kendalltau): correlation: -0.4084441494779115 pvalue: 0.0
+TN-paperNum(kendalltau): correlation: -0.38089373561186085 pvalue: 0.0
+TN-citationSum(kendalltau): correlation: -0.39311998187484 pvalue: 0.0

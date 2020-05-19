@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>distribution of Turing Number</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts-Plug-in/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                //text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['average Betweenness centrality', 'average Closeness centrality', 'average Degree centrality',
+                'average Eigenvector centrality', 'average Load centrality'],
+                orient: 'vertical',
+                // right: "10%",
+                // top: "10%",
+                left: "10%",
+                bottom: "15%",
+                fontWeight: 'bold'
+            },
+            xAxis: {
+                data: ["0","1","2","3","4","5","6","7"],
+                name: "Turing Number",
+                nameLocation: 'middle',
+                nameGap: 25,
+                nameTextStyle: {
+                    fontWeight: 'bold',
+                    fontSize: 18
+                }
+            },
+            yAxis: [
+                {
+                    position: 'left',
+                    name: "average Centrality value(ln)",
+                    nameLocation: 'middle',
+                    // min: 0,
+                    // max: 0.015,
+                    nameGap: 40,
+                    nameTextStyle: {
+                        fontWeight: 'bold',
+                        fontSize: 18
+                    }
+                //,
+                // axisLabel:{
+                //     formatter: function (value) {
+                //         return value/1000 + 'k'
+                //         }
+                //     }
+                }
+                // ,
+                // {
+                //
+                //     position: 'right',
+                //     name: "average Closeness centrality value",
+                //     nameLocation: 'middle',
+                //     min: 0,
+                //     max: 0.15,
+                //     nameGap: 35,
+                //     nameTextStyle: {
+                //         fontWeight: 'bold',
+                //         fontSize: 18
+                //     },
+                    // axisLabel:{
+                    //     formatter: function (value) {
+                    //         return value/1000 + 'k'
+                    //         }
+                    //     }
+                // }
+            ],
+            series: [
+                {
+                    name: "average Betweenness centrality",
+                    type: 'bar',
+                    data: [-4.598559308837901, -5.739625901413967, -7.326495465380958,
+                        -9.15461264853283, -10.884739227882303, -11.794042804233786,
+                        -12.013956705936696, -27.054091024717483],
+                    barGap: "0%",
+                    yAxisIndex: 0
+                },
+                {
+                    name: 'average Closeness centrality',
+                    type: 'bar',
+                    data: [-2.1235779776195476, -2.081097358790865, -2.1356565498235422,
+                        -2.2234023918050183, -2.323597876625237, -2.4203980194822265,
+                        -2.5088556502353403, -2.5867099473150432],
+                    barGap: "0%",
+                    yAxisIndex: 0
+                },
+                {
+                    name: 'average Degree centrality',
+                    type: 'bar',
+                    data: [-8.421783006611578, -8.549397641818807, -9.003077549949362,
+                        -9.690121548740871, -10.221138073393018, -10.380437324543283,
+                        -10.427856418932569, -10.706526668473787],
+                    barGap: "0%",
+                    yAxisIndex: 0
+                },
+                {
+                    name: 'average Eigenvector centrality',
+                    type: 'bar',
+                    data: [-4.242894483564033, -4.843363598995318, -6.098259293082599,
+                        -8.280389326566453, -10.280363957550346, -12.326253668947839,
+                        -15.106293469845506, -17.599128249858705],
+                    barGap: "0%",
+                    yAxisIndex: 0
+                },
+                {
+                    name: 'average Load centrality',
+                    type: 'bar',
+                    data: [-4.613399926869557, -5.749223564000474, -7.325080921265377,
+                        -9.141970278884894, -10.875007876045617, -11.792602915915195,
+                        -12.013764403391294, -27.054091024717483],
+                    barGap: "0%",
+                    yAxisIndex: 0
+                }
+            ],
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {
+                        show:true,
+                        excludeComponents :['toolbox'],
+                        pixelRatio: 2
+                    }
+                }
+            }
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
